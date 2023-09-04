@@ -1,0 +1,54 @@
+---
+import Tag from "../components/Tag.astro";
+import Tags from "../components/Tags.astro";
+import BaseLayout from "./BaseLayout.astro";
+const { title, author, pubDate, description, image, tags } =
+  Astro.props.frontmatter;
+---
+
+<BaseLayout pageTitle={title}>
+  <article>
+    <p>Escrito por {author}</p>
+    {pubDate && <p>Publicado el: {pubDate.slice(0, 10)}</p>}
+    {description && <p>Descripcion: {description}</p>}
+    {
+      image && (
+        <figure>
+          <img src={image.url} alt={image.alt} />
+        </figure>
+      )
+    }
+    {
+      tags && (
+        <>
+          <p>Etiquetas:</p>
+          <Tags>
+            {tags.map((tag: unknown) => (
+              <Tag tag={tag} />
+            ))}
+          </Tags>
+        </>
+      )
+    }
+  </article>
+
+  <slot />
+</BaseLayout>
+
+<style>
+  article {
+    background-color: #d4d4d4;
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem;
+    border-radius: 1rem;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
+
+    & img {
+      max-width: -webkit-fill-available;
+    }
+  }
+</style>
