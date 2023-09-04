@@ -4,10 +4,11 @@ import Tags from "../components/Tags.astro";
 import BaseLayout from "./BaseLayout.astro";
 const { title, author, pubDate, description, image, tags } =
   Astro.props.frontmatter;
+
 ---
 
 <BaseLayout pageTitle={title}>
-  <article>
+  <article transition:animate="slide">
     <p>Escrito por {author}</p>
     {pubDate && <p>Publicado el: {pubDate.toDateString()}</p>}
     {description && <p>Descripcion: {description}</p>}
