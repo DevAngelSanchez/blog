@@ -9,7 +9,7 @@ const { title, author, pubDate, description, image, tags } =
 <BaseLayout pageTitle={title}>
   <article>
     <p>Escrito por {author}</p>
-    {pubDate && <p>Publicado el: {pubDate.slice(0, 10)}</p>}
+    {pubDate && <p>Publicado el: {pubDate.toDateString()}</p>}
     {description && <p>Descripcion: {description}</p>}
     {
       image && (
